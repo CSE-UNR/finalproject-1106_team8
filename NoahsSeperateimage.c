@@ -1,5 +1,5 @@
 //final Project 
-//Authors: Noah Ramos
+//Authors: Noah Ramos, Christopher Thrasher
 
 #include <stdio.h>
 #define ROWS 100
@@ -38,9 +38,7 @@ void mainMenu(){
 	scanf("%d", &menuChoice);
 	switch(menuChoice){
 		case 1:loadImage(ROWS, COLUMNS, savedImage, &imageRows, &imageColumns);
-			printf("the rows are %d, and columns are %d\n", imageRows, imageColumns);
 			int indexRow=0, indexColumn=0;
-			
 			break;
 		case 2:displayImage(imageRows, imageColumns, savedImage);
 		for(indexRow;indexRow<imageRows+1;indexRow++){
@@ -141,7 +139,7 @@ void editImage(int rows, int columns, char editArr[][columns]){
 			break;
 		case 2:dimImage(rows, columns, editArr);
 			break;
-		case 3:
+		case 3:cropImage(rows, columns, editArr);
 			break;
 		}
 	}while(editChoice!= 0);	
