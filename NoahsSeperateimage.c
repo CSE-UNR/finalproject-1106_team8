@@ -21,6 +21,8 @@ void brightImage(int rows, int columns, char brightArr[][columns]);
 
 void save(int rows, int columns, char saveArr[][columns]);
 
+void cropImage(int *rows, int *columns, char cropArr[][*columns]);
+
 int main(){
 
 	mainMenu();	
@@ -113,6 +115,37 @@ void editImage(int rows, int columns, char editArr[][columns]){
 		}
 	}while(editChoice!= 0);	
 	printf("GoodBye!\n\n");	
+}
+
+void cropImage(int *rows, int *columns, char cropArr[][*columns]) {
+    int startRow, startColumn, cropRows, cropColumns;
+
+    	printf("Enter start row   ");
+    	scanf("%d", &startRow);
+    	printf("Enter starting colum: ");
+    	scanf("%d", &startColumn);
+    	printf("Enter number of rows to crop: ");
+    	scanf("%d", &cropRows);
+    	printf("Enter number of columns to crop: ");
+    	scanf("%d", &cropColumns);
+
+    	if (startRow >= 0 && startRow < *rows && startColumn >= 0 && startColumn < *columns
+        	&& cropRows > 0 && cropColumns > 0
+       		&& startRow + cropRows <= *rows && startColumn + cropColumns <= *columns) {
+
+        	*rows = cropRows;
+        	*columns = cropColumns;
+
+        for (int i = 0; i < cropRows; i++) {
+            	for (int j = 0; j < cropColumns; j++) {
+                cropArr[i][j] = cropArr[startRow + i][startColumn + j];
+            }
+        }
+
+        printf("Image cropped.\n");
+    } else {
+        printf("Invalid dimenson\n");
+    }
 }
 
 void dimImage(int rows, int columns, char dimArr[][columns]){
